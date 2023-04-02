@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+  <!-- Custom CSS -->
+  <style>
+    body {
+      background-color: black;
+    }
+    h1 {
+      font-family: Arial, sans-serif;
+      color: red;
+      font-size: 60px;
+      text-align: center;
+      text-shadow: 0px 0px 10px #ff0000;
+    }
+  </style>
+
+  <title>Neurogram</title>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header>
+    <h1>Neurogram</h1>
+  </header>
+
+  <!-- Gallery Section -->
+  <section class="container my-5">
+    <div class="row">
+      <div class="col-12 mb-4">
+        <img id="galleryImage" src="/Users/zackarooso/Documents/GITHUB/My-first-project/Neurogram/Images/1.jpeg" alt="Gallery Image" class="w-100 border border-white">
+      </div>
+    </div>
+  </section>
+
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+  <!-- JavaScript to cycle through images -->
+  <script>
+    var currentImage = 1;
+    var maxImages = 22;
+
+    function showImage(n) {
+      var imgElement = document.getElementById("galleryImage");
+      imgElement.src = "/Users/zackarooso/Documents/GITHUB/My-first-project/Neurogram/Images/" + n + ".jpeg";
+    }
+
+    function nextImage() {
+      currentImage = (currentImage + 1) % (maxImages + 1);
+      if (currentImage == 0) currentImage = 1;
+      showImage(currentImage);
+    }
+
+    function prevImage() {
+      currentImage = (currentImage - 1);
+      if (currentImage < 1) currentImage = maxImages;
+      showImage(currentImage);
+    }
+
+    document.addEventListener("keydown", function(event) {
+      if (event.code === "ArrowLeft") {
+        prevImage();
+      } else if (event.code === "ArrowRight") {
+        nextImage();
+      }
+    });
+
+    document.addEventListener("swipeleft", function(event) {
+      nextImage();
+    });
+
+    document.addEventListener("swiperight", function(event) {
+      prevImage();
+    });
+  </script>
+
+</body>
+</html>
